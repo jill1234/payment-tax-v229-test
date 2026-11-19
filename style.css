@@ -208,3 +208,44 @@ input[type="date"],input[type="month"],input[type="datetime-local"]{display:bloc
  .payment-entry-form-v229 .payment-submit-v229{flex:0 0 100%;justify-content:flex-end}
  .installment-payment-entry{max-width:100%;overflow:visible}
 }
+
+/* V2.2.9 date-width hotfix 2: constrain WebKit's intrinsic date/month content,
+   not just the outer input. Do not change table horizontal scrolling. */
+input:is([type="date"],[type="month"],[type="datetime-local"]){
+  inline-size:100%!important;
+  max-inline-size:100%!important;
+  min-inline-size:0!important;
+  box-sizing:border-box!important;
+  overflow:hidden;
+  font-size:16px;
+}
+input:is([type="date"],[type="month"],[type="datetime-local"])::-webkit-date-and-time-value{
+  min-width:0;
+  max-width:100%;
+  text-align:left;
+}
+input:is([type="date"],[type="month"],[type="datetime-local"])::-webkit-datetime-edit{
+  min-width:0;
+  max-width:100%;
+  overflow:hidden;
+}
+input:is([type="date"],[type="month"],[type="datetime-local"])::-webkit-calendar-picker-indicator{
+  flex-shrink:0;
+  margin-inline-start:0;
+}
+/* The payment form is dynamic; its labels must be able to shrink on iOS. */
+.payment-entry-form-v229>label,
+.inline-form>label,
+.two>label,
+form label:has(>input:is([type="date"],[type="month"],[type="datetime-local"])){
+  min-inline-size:0!important;
+  max-inline-size:100%;
+  box-sizing:border-box;
+}
+@media(max-width:650px){
+  .payment-entry-form-v229>label,
+  .inline-form>label{
+    inline-size:100%;
+    flex-basis:100%!important;
+  }
+}

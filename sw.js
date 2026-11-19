@@ -1,6 +1,6 @@
 /* V2.2.9 isolated test: app-shell only; user data remains in IndexedDB. */
 'use strict';
-const CACHE_NAME = 'payment-tax-v229-isolated-shell-1';
+const CACHE_NAME = 'payment-tax-v229-isolated-shell-2';
 const CACHE_PREFIX = 'payment-tax-v229-isolated-shell-';
 const APP_FILES = ['./', './index.html', './app.js', './style.css', './manifest.webmanifest', './icon-512.png'];
 const APP_URLS = APP_FILES.map(path => new URL(path, self.registration.scope).href);
