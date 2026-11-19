@@ -217,7 +217,6 @@ input:is([type="date"],[type="month"],[type="datetime-local"]){
   min-inline-size:0!important;
   box-sizing:border-box!important;
   overflow:hidden;
-  font-size:16px;
 }
 input:is([type="date"],[type="month"],[type="datetime-local"])::-webkit-date-and-time-value{
   min-width:0;
@@ -247,5 +246,44 @@ form label:has(>input:is([type="date"],[type="month"],[type="datetime-local"])){
   .inline-form>label{
     inline-size:100%;
     flex-basis:100%!important;
+  }
+}
+
+/* Date-height restoration: use original shared input font and padding; no fixed height. */
+
+
+/* V2.2.9 shell-4: iPhone native date/month controls.
+   Keep the existing picker; reserve a small right-side safety gutter for
+   WebKit's native intrinsic width without clipping the whole page. */
+@media (max-width:650px) {
+  input[type="date"], input[type="month"], input[type="datetime-local"] {
+    display:block;
+    width:calc(100% - 24px)!important;
+    max-width:calc(100% - 24px)!important;
+    min-width:0!important;
+    inline-size:calc(100% - 24px)!important;
+    max-inline-size:calc(100% - 24px)!important;
+    height:48px;
+    min-height:48px;
+    padding:0 12px;
+    line-height:normal;
+    box-sizing:border-box!important;
+    vertical-align:middle;
+  }
+  input[type="date"]::-webkit-date-and-time-value,
+  input[type="month"]::-webkit-date-and-time-value,
+  input[type="datetime-local"]::-webkit-date-and-time-value {
+    min-height:0;
+    height:100%;
+    display:flex;
+    align-items:center;
+    text-align:left;
+  }
+  input[type="date"]::-webkit-datetime-edit,
+  input[type="month"]::-webkit-datetime-edit,
+  input[type="datetime-local"]::-webkit-datetime-edit {
+    min-height:0;
+    padding:0;
+    line-height:normal;
   }
 }
