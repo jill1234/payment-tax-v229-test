@@ -1,0 +1,210 @@
+:root{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#483f50;background:#f9f7fb}*{box-sizing:border-box}body{margin:0}header{background:linear-gradient(115deg,#e8dff0,#faf5ec);border-bottom:1px solid #e7deeb;padding:24px 0 18px}.wrap{max-width:900px;margin:auto;padding-left:18px;padding-right:18px}.eyebrow{font-size:12px;letter-spacing:.07em;color:#7e658f}h1{font-size:23px;margin:8px 0}header p{margin:0;color:#766a7d;font-size:13px}nav{display:flex;gap:8px;overflow:auto;padding:18px 0;position:sticky;top:0;background:#f9f7fb;z-index:2}button{font:inherit;cursor:pointer;border:1px solid #d9cce1;background:white;border-radius:12px;padding:10px 14px;color:#5d4a6b;white-space:nowrap}nav button.active,.primary{background:#82699a;color:white;border-color:#82699a}button:hover{filter:brightness(.97)}.page{display:none}.page.active{display:block}h2{font-size:21px}h3{font-size:17px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metrics article,.panel,.item,.notice{background:white;border:1px solid #e8e0ec;border-radius:16px;padding:17px}.metrics span{display:block;font-size:13px;color:#7d7182}.metrics strong{font-size:30px;display:block;margin-top:8px;color:#6e5285}.notice{background:#f0ebf6;line-height:1.7;margin:16px 0}.panel{margin:12px 0 20px}form label{display:block;font-size:14px;margin:13px 0;font-weight:600}input,select{display:block;width:100%;margin-top:7px;border:1px solid #d6cbdc;border-radius:10px;background:#fff;padding:12px;font:inherit;color:#453d4b}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hint{color:#85788a;font-size:13px;line-height:1.6}.stack{display:grid;gap:10px;margin-bottom:35px}.item strong{display:block;margin-bottom:8px}.item small{display:block;color:#7b7082;line-height:1.8}.item .chip{display:inline-block;padding:3px 9px;background:#eee8f4;border-radius:12px;color:#715784;font-size:12px;margin-top:6px}#message:not(:empty){background:#eee7f4;padding:12px;border-radius:10px;margin:4px 0 12px}code{word-break:break-word}@media(max-width:580px){.two{grid-template-columns:1fr;gap:0}.metrics{gap:7px}.metrics article{padding:12px}.metrics strong{font-size:25px}h1{font-size:21px}}
+
+.metrics.four{grid-template-columns:repeat(4,minmax(0,1fr))}.metrics.four article{background:#f4eef8}.panel{margin-top:18px}.item button{margin:5px 6px 4px 0}.item select,.item input{max-width:220px}.inline-form{display:flex;flex-wrap:wrap;align-items:end;gap:10px;margin-top:12px}.inline-form label{flex:1 1 145px}.inline-form button{align-self:end}.subtle{color:#776a84}.error{color:#9e3434}.status-overdue{color:#a33838;font-weight:700}.status-due{color:#99611a;font-weight:700}@media(max-width:850px){.metrics.four{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:450px){.metrics.four{grid-template-columns:1fr 1fr}.metrics.four strong{font-size:1.15rem}}
+
+/* V2.2 UI-02：總覽單列式到期清單 */
+#upcoming.stack{display:block;margin-bottom:0}
+.upcoming-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 2px;border-bottom:1px solid #eee7f1;min-width:0}
+.upcoming-row:last-child{border-bottom:0}
+.upcoming-name{font-weight:600;min-width:0;overflow-wrap:anywhere}
+.upcoming-right{display:grid;grid-template-columns:120px 125px 90px;gap:12px;align-items:center;text-align:right;flex-shrink:0}
+.upcoming-date,.upcoming-amount{font-variant-numeric:tabular-nums;white-space:nowrap}
+.upcoming-status{margin:0!important;text-align:center;white-space:nowrap}
+.upcoming-status.overdue{color:#a33838!important;background:#fbe8e8!important}
+@media(max-width:650px){.upcoming-row{align-items:flex-start;gap:8px}.upcoming-name{flex:1}.upcoming-right{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px 10px;max-width:62%;font-size:13px}}
+
+/* Stage 2.1: compact plan list and standalone detail view */
+[hidden]{display:none!important}
+.plan-toolbar{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px}
+.plan-toolbar label{font-weight:600;font-size:14px}
+#planList.stack{margin-bottom:8px}
+.plan-row{display:block;text-align:left;width:100%;white-space:normal;padding:16px;border-radius:12px}
+.plan-row:focus-visible{outline:3px solid #82699a;outline-offset:2px}
+.plan-row-head,.plan-row-values{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.plan-row-head strong{font-size:16px;overflow-wrap:anywhere}
+.plan-row-values{margin-top:12px;font-size:13px;color:#75677e;font-variant-numeric:tabular-nums}
+.plan-badge{font-size:12px;background:#f0eaf5;border-radius:12px;padding:4px 10px;white-space:nowrap}
+.plan-badge.overdue{color:#9b3030;background:#fbe9e9}
+.pagination{display:flex;justify-content:center;gap:10px;margin-top:16px}
+.pagination button:disabled{opacity:.45;cursor:default}
+#planDetailView{margin-top:16px}
+.plan-summary{line-height:1.7;margin-bottom:0}
+@media(max-width:580px){.plan-toolbar{grid-template-columns:1fr;gap:0}.plan-row-values{flex-wrap:wrap}}
+
+/* V2.2 Stage 2.2 */
+.history-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}.history-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #eee7f1}.history-row strong{display:block}.history-row small{display:block;margin-top:6px;color:#80718a}.history-money{white-space:nowrap;font-variant-numeric:tabular-nums}#taxDetails .item{margin-bottom:12px}#cardList{margin-bottom:20px}#cardTransactionList .item{margin-bottom:8px}@media(max-width:580px){.history-row{gap:8px}.history-money{font-size:14px}}
+
+/* HIST-01 / INST-02 / CARD-03: one horizontal row per record on mobile */
+.hscroll{width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.data-row{display:flex;align-items:center;gap:12px;min-width:max-content;padding:11px 8px;border-bottom:1px solid #e9e2ed;white-space:nowrap}
+.data-row>*{flex:0 0 auto}.data-row strong{min-width:125px}.data-row small{font-size:13px;color:#6d6174}
+.data-row button{width:auto;margin:0}.data-row form{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;margin:0}.data-row form input{min-width:110px;max-width:170px}.data-row form label{min-width:120px;font-size:12px}
+.data-row .inline-form{padding:0;background:transparent;border:0}.data-row .inline-form input{width:120px}
+.hscroll .plan-row{width:auto;min-width:max-content;white-space:nowrap;text-align:left}.hscroll .plan-row-head,.hscroll .plan-row-values{flex-wrap:nowrap;gap:18px}
+#cardReminders .data-row{min-width:max-content}.data-row .chip{margin:0}
+@media(max-width:650px){.data-row{flex-wrap:nowrap}.upcoming-row{min-width:max-content;flex-wrap:nowrap}.upcoming-right{flex-wrap:nowrap;max-width:none}}
+/* iPhone: payment inputs can wrap; record rows remain horizontal. */
+.inline-form{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.inline-form label{flex:1 1 160px;min-width:140px}
+.inline-form button{flex:0 0 auto}
+.hscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.data-row{width:max-content;min-width:100%;white-space:nowrap}
+
+/* Tax simplified master and yearly detail: keep data rows on one horizontal line. */
+#taxTemplateList,#taxYearList{overflow-x:auto}#taxYearList .data-row,#taxTemplateList .data-row{width:max-content;min-width:100%;flex-wrap:nowrap}#taxYearPanel .tax-advanced{margin-top:1rem;padding:1rem;border:1px solid #d6c9e0;border-radius:12px}#taxYearPanel .tax-advanced summary{cursor:pointer;font-weight:600}#taxYearPanel .tax-advanced form{margin-top:1rem}
+
+/* V2.2.5 overview follows payment-tax-test, keeps every reminder on one scrollable row. */
+#upcoming{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#upcoming .data-row{width:max-content;min-width:100%;display:flex;justify-content:space-between;gap:22px;align-items:center}
+#upcoming .data-row span:nth-child(3){font-weight:700;font-variant-numeric:tabular-nums}
+#upcoming .data-row span:last-child{color:#8b647a}
+#cardReminders .data-row{justify-content:space-between}
+.metrics.four article{background:#f3edf7;border-radius:16px}
+@media(min-width:800px){.metrics.four{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* V2.2.6 */
+.installment-payment-entry{padding:12px 16px;margin:0 0 14px;border:1px solid #e6dbea;border-radius:12px;max-width:100%;white-space:normal;background:#fbf9fd}
+.installment-payment-entry .inline-form{display:flex;flex-wrap:wrap;gap:12px}
+.installment-payment-entry .inline-form label{flex:1 1 190px}
+.attachment-dialog:not([hidden]){position:fixed;inset:0;z-index:200;background:#0007;display:flex;align-items:center;justify-content:center;padding:16px}
+.attachment-panel{background:#fff;border-radius:18px;padding:24px;max-width:650px;width:100%;max-height:90vh;overflow:auto}
+.attachment-head,.attachment-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.attachment-row{padding:10px 0;border-bottom:1px solid #eee}
+
+/* V2.2.7: one row per record, horizontally scrollable */
+#upcoming .data-row,#cardReminders .data-row{display:flex;flex-wrap:nowrap;white-space:nowrap;align-items:center;min-width:max-content;gap:16px}
+#upcoming,#cardReminders{overflow-x:auto;max-width:100%}
+#upcoming .data-row>span:last-child,#cardReminders .data-row>span:last-child{margin-left:auto}
+.status-pill{display:inline-block;border-radius:999px;padding:6px 12px;background:#fff0db;color:#8a5209;font-size:.9rem;flex:none}.status-late{background:#ffe7e7;color:#9c2525}.status-soon{background:#fff0db;color:#8a5209}
+
+#upcoming .data-row,#cardReminders .data-row{width:max-content;min-width:100%}
+
+#taxPaymentFormsV228{display:grid;gap:12px;margin-top:14px}.tax-payment-entry{border:1px solid #e6dbea;border-radius:12px;padding:14px;background:#fbf9fd;white-space:normal;min-width:0}.tax-payment-entry h4{margin:0 0 10px}.tax-payment-entry form{display:flex;flex-wrap:wrap;gap:10px;align-items:end}.tax-payment-entry form label{flex:1 1 160px;min-width:140px}#cardSettingsDialogV228[hidden]{display:none}#cardSettingsFormV228{display:grid;gap:12px}
+
+
+/* V2.2.8 備份設定：歷史封存 ZIP 驗證按鈕 */
+#archiveRestoreFile {
+  margin-bottom: 16px;
+}
+#archiveRestoreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 0;
+  border: 1px solid #9d83b5;
+  color: #8f73a8;
+  background: #fff;
+  border-radius: 12px;
+}
+#archiveRestoreBtn:hover {
+  background: #f7f2fa;
+}
+#archiveRestoreBtn:focus-visible {
+  outline: 2px solid #82699a;
+  outline-offset: 3px;
+}
+
+/* V2.2.8 最終 UI：僅備份設定的紫框一般操作使用深藍字。 */
+#settings button:not(.primary):not(:disabled):not(.danger):not(.delete-action-v228) {
+  color:#244B83;
+  font-weight:600;
+}
+/* 所有刪除操作使用深紅色文字；不改變按鈕事件。 */
+button.delete-action-v228,
+button[id*="delete" i],
+button[id*="remove" i],
+button[id*="cleanup" i],
+button[id*="clear" i].danger {
+  color:#9B2635;
+  font-weight:600;
+}
+/* 已確認的兩組表單間距。 */
+#generateTaxYear + button { margin-top:16px; }
+#generateTaxBills { margin-top:16px; }
+#fullRestoreFile { margin-bottom:16px; }
+#archiveRestoreFile { margin-bottom:16px; }
+#settings #archiveRestoreBtn {
+  color:#244B83;
+  font-weight:600;
+  border-color:#9d83b5;
+  background:#fff;
+}
+
+
+/* V2.2.8 iPhone date/month control width correction.
+   Keep native iOS pickers and the existing scrollable data rows unchanged. */
+input[type="date"],
+input[type="month"],
+input[type="datetime-local"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+/* iOS native picker intrinsic content can force flex/grid items wider. */
+form label,
+.inline-form label,
+.tax-payment-entry form label,
+.two > label {
+  min-width: 0;
+  max-width: 100%;
+}
+form,
+.inline-form,
+.tax-payment-entry,
+.panel {
+  min-width: 0;
+}
+/* Payment entry forms may wrap on narrow phones. Data rows remain scrollable. */
+@media (max-width: 650px) {
+  .inline-form label,
+  .tax-payment-entry form label {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  .inline-form input[type="date"],
+  .inline-form input[type="month"],
+  .tax-payment-entry input[type="date"] {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+/* V2.2.8 UI acceptance: header and overview reminders. */
+header .eyebrow{display:none}
+header h1{display:flex;align-items:center;gap:9px;margin:0 0 8px;font-size:clamp(18px,3.1vw,24px);line-height:1.4;overflow-wrap:anywhere}
+header .brand-leaf{flex:0 0 auto;font-size:1.15em}
+header p{font-size:clamp(12px,2.5vw,14px);line-height:1.6}
+.test-footer{padding-top:14px;padding-bottom:28px;color:#85788a;font-size:13px;line-height:1.6}
+#upcoming,#cardReminders{width:100%;max-width:100%;overflow-x:visible}
+#upcoming .data-row.overview-reminder{display:flex;width:100%;min-width:0;white-space:normal;gap:12px;align-items:center;justify-content:space-between;padding:14px 0}
+#upcoming .overview-reminder .overview-info{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:5px}
+#upcoming .overview-reminder .overview-name{font-weight:600;overflow-wrap:anywhere;min-width:0}
+#upcoming .overview-reminder .overview-meta{font-size:13px;color:#786d7e;font-weight:400;white-space:normal;overflow-wrap:anywhere}
+#upcoming .overview-reminder .status-pill{margin-left:0;flex:0 0 auto;white-space:nowrap}
+#upcoming .data-row:last-child,#cardReminders .data-row:last-child{border-bottom:0}
+#upcoming .overview-empty,#cardReminders .overview-empty{white-space:normal;width:100%;min-width:0;display:block;text-align:center;color:#80718a;border-bottom:0;padding:18px 0}
+#cardReminders .data-row:not(.overview-empty){width:100%;min-width:0;white-space:normal;flex-wrap:wrap;gap:10px}
+#cardReminders .data-row:not(.overview-empty)>span{min-width:0;overflow-wrap:anywhere}
+@media(max-width:580px){header{padding:18px 0 15px}header h1{font-size:clamp(17px,4.5vw,22px)}#upcoming .overview-reminder{gap:8px}#upcoming .overview-reminder .status-pill{font-size:12px;padding:5px 8px}}
+
+/* V2.2.9: native iOS date/month inputs stay within all layout containers. */
+*,*::before,*::after{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:clip}
+.page,.wrap,.panel,.two,.two>label,.inline-form,.inline-form>label,.installment-payment-entry,.tax-payment-entry{min-width:0;max-width:100%}
+input[type="date"],input[type="month"],input[type="datetime-local"]{display:block;min-width:0!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;-webkit-appearance:auto}
+.payment-entry-form-v229 .payment-submit-v229{display:flex;justify-content:flex-end;align-items:center;flex:0 0 100%;width:100%;min-width:0}
+.payment-entry-form-v229 .payment-submit-v229 button{max-width:100%}
+#planDetailHeader button{margin:6px 10px 6px 0;white-space:normal}
+.backup-confirm-v229{display:flex;align-items:flex-start;gap:10px;margin:12px 0;max-width:100%}
+.backup-confirm-v229 input{flex:0 0 auto;width:auto;margin-top:4px}
+@media(max-width:650px){
+ .payment-entry-form-v229{display:flex;flex-wrap:wrap;width:100%;max-width:100%}
+ .payment-entry-form-v229>label{flex:1 1 100%!important;width:100%;min-width:0!important;max-width:100%}
+ .payment-entry-form-v229>label input{display:block;width:100%;max-width:100%;min-width:0}
+ .payment-entry-form-v229 .payment-submit-v229{flex:0 0 100%;justify-content:flex-end}
+ .installment-payment-entry{max-width:100%;overflow:visible}
+}
